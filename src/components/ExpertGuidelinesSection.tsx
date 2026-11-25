@@ -1,5 +1,48 @@
 import { EXPERT_GUIDELINES } from '../data/expertData';
 
+function ThreePmsfSymbol() {
+  const branches = [0, 60, 120, 180, 240, 300];
+  return (
+    <figure className="flex shrink-0 flex-col items-center justify-center rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 dark:border-slate-800 dark:bg-slate-950">
+      <svg
+        viewBox="0 0 120 96"
+        role="img"
+        aria-label="Symbol alpejski 3PMSF — trzy szczyty górskie z płatkiem śniegu"
+        className="h-14 w-16 text-slate-900 sm:h-16 sm:w-20 dark:text-slate-100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Three-peak mountain silhouette (ECE R117) */}
+        <path
+          d="M 8 86 L 28 38 L 40 56 L 60 12 L 80 54 L 92 36 L 112 86 Z"
+          stroke="currentColor"
+          strokeWidth="4.5"
+          strokeLinejoin="round"
+        />
+        {/* Six-pointed snowflake centered inside the mountain (outward V-forks) */}
+        <g
+          transform="translate(60 63)"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="text-sky-600 dark:text-sky-400"
+        >
+          {branches.map((angle) => (
+            <g key={angle} transform={`rotate(${angle})`}>
+              <line x1="0" y1="0" x2="0" y2="-16" />
+              <path d="M -4.2 -13.2 L 0 -9.2 L 4.2 -13.2" />
+            </g>
+          ))}
+        </g>
+      </svg>
+      <figcaption className="mt-1 font-mono text-[10px] font-semibold tracking-wider text-slate-600 dark:text-slate-400">
+        3PMSF
+      </figcaption>
+    </figure>
+  );
+}
+
 export function ExpertGuidelinesSection() {
   return (
     <section id="zalecenia" aria-labelledby="guidelines-heading" className="space-y-4 sm:space-y-6">
@@ -34,9 +77,18 @@ export function ExpertGuidelinesSection() {
                 {item.number}. {item.title}
               </h3>
 
-              <p className="text-xs leading-relaxed text-slate-700 sm:text-sm dark:text-slate-300">
-                {item.summary}
-              </p>
+              {item.number === '04' ? (
+                <div className="flex items-start gap-4">
+                  <p className="flex-1 text-xs leading-relaxed text-slate-700 sm:text-sm dark:text-slate-300">
+                    {item.summary}
+                  </p>
+                  <ThreePmsfSymbol />
+                </div>
+              ) : (
+                <p className="text-xs leading-relaxed text-slate-700 sm:text-sm dark:text-slate-300">
+                  {item.summary}
+                </p>
+              )}
 
               <ul className="space-y-2 border-t border-slate-100 pt-3 text-xs leading-relaxed text-slate-600 dark:border-slate-800 dark:text-slate-400">
                 {item.details.map((detail) => (
