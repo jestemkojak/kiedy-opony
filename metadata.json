@@ -1,0 +1,10 @@
+{
+  "name": "OponaRadar",
+  "description": "Panel analityczny do oceny momentu wymiany opon na zimowe lub letnie na podstawie historii temperatur, lokalnej prognozy pogody, pory jazdy oraz zaleceń ekspertów PZPO i ADAC.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
